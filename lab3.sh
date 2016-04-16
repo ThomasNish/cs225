@@ -1,16 +1,18 @@
 #!/bin/bash
 
-echo "Enter your User ID: "
-read UID
 
-NUMBER=$(echo $NUMBER | sed 's/[.].*$//')
-NUMBER=$(echo $NUMBER | sed 's/[[:punct:][:alpha:]]//')
-
-if [[ $UID > 500 ]] ;then
-	echo "That number is too big."
-elif [[ $UID -eq 0 ]]
+if [[ $UID -eq 0 ]] ;then
+	echo "It is insecure to run this script as root. You are the root user"
 	exit 1
-else 
-	echo "This is a test" 
+elif [[ $UID -le 500 ]] ;then 
+	echo "You are not a valid user. ID must be greater than 500"
+	exit 1
+else
+	if [ -f /etc/passwd ] && [ -r /etc/passwd ] ;then
+		#echo $?
+ 		cat /etc/passwd | grep "^$(whoami)" | awk -F ":" '{print $6}'
+	else
+		echo "You do not have a home directory in this system"
+		exit 1 
+	fi
 fi
-

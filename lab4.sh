@@ -3,7 +3,6 @@
 echo "Enter a number between 50 and 100: "
 read NUMBER
 
-NUMBER=$(echo $NUMBER | sed 's/^0*//')
 NUMBER=$(echo $NUMBER | sed 's/[.].*$//')
 NUMBER=$(echo $NUMBER | sed 's/[[:punct:][:alpha:]]//')
 
