@@ -10,7 +10,9 @@ elif [[ $UID -le 500 ]] ;then
 else
 	if [ -f /etc/passwd ] && [ -r /etc/passwd ] ;then
 		#echo $?
- 		cat /etc/passwd | grep "^$(whoami)" | awk -F ":" '{print $6}'
+ 		STRHOME=cat /etc/passwd | grep "^$(whoami)" | awk -F ":" '{print $6}'
+		HOMESIZE=du -h "$STRHOME" 
+		echo "The size of your home directory is $HOMESIZE"
 	else
 		echo "You do not have a home directory in this system"
 		exit 1 
