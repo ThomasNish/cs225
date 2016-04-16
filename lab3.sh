@@ -11,7 +11,7 @@ else
 	if [ -f /etc/passwd ] && [ -r /etc/passwd ] ;then
 		#echo $?
  		STRHOME=cat /etc/passwd | grep "^$(whoami)" | awk -F ":" '{print $6}'
-		HOMESIZE=du -h "$STRHOME" 
+		HOMESIZE="$(du -sh)  $STRHOME" 
 		echo "The size of your home directory is $HOMESIZE"
 	else
 		echo "You do not have a home directory in this system"
