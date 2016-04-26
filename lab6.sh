@@ -9,7 +9,7 @@ STRMEDIA=$( grep "filename" /root/Projects/CS225/medialab/media.xml | grep "mp[g
 echo "Files not in medialab:"
 for XMLFILE in $STRMEDIA ;do
         if [[ -e $LAB/"$XMLFILE" ]] ;then
-                (( ishere++ ))
+                :
         else
                 echo $XMLFILE
 		(( XMLcounter++ ))
@@ -18,7 +18,7 @@ done
 echo "Files not in media.xml:"
 for MEDIAFILES in $MPVAR ;do
 	if grep -q $MEDIAFILES $XML  ;then
-		((ishere1++))
+		:
 	else
 		echo $MEDIAFILES
 		(( MEDIAcounter++ ))
