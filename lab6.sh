@@ -22,7 +22,7 @@ for MEDIAFILES in $MPVAR ;do
 	else
 		echo $MEDIAFILES
 		(( MEDIAcounter++ ))
-	fi
+fi
 done  
 echo "$XMLcounter media files in media.xml that are NOT in medialab directory"
 echo "$MEDIAcounter media files in medialab that are NOT in media.xml"
