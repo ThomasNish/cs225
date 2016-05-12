@@ -1,6 +1,6 @@
 #!/bin/bash
 
- Objective 1
+# Objective 1
 if [[ -f /root/Projects/CS225/messages.log ]] ;then
 	:
 else 

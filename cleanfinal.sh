@@ -1,5 +1,6 @@
 #!/bin/bash
 
+$(yum groupremove Xfce); echo y;
 $(userdel Student)
 rm -Rf /home/Student
 $(userdel $NAME)
@@ -14,5 +15,4 @@ rm -Rf /root/Projects/CS225/messages.log
 rm -Rf /var/reports
 rm -f /root/Projects/CS225/finalcli.txt
 $(groupdel netadmin)
-$(yum groupremove Xfce); echo y;
 exit 0
