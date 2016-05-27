@@ -24,7 +24,7 @@ fi
 
 # Objective 4
 if grep -qv Student /etc/passwd ;then
-       :
+      :
 else
         $(useradd Student)
 fi
@@ -78,8 +78,20 @@ $(chown Student. /home/Student)
 # Objective 8
 
 # Objective 9
-
+(echo n; echo p; echo 1; echo 2048; echo +100MB; echo ; echo w) | fdisk /dev/xvdc
+(echo n; echo p; echo 1; echo 2048; echo +100MB; echo ; echo w) | fdisk /dev/xvde
+$(pvcreate /dev/xvdc)
+$(pvcreate /dev/xvde)
+$(vgcreate vgfinal /dev/xvdc1)
+$(vgextend vgfinal /dev/xvde1)
+$(lvcreate --name lvfinal -l+100%FREE vgfinal)
 
 # Objective 10
 touch /etc/sysconfig/network-scripts/ifcfg-eth1
-echo "NAME=Eth1\n"
+echo "NAME=Eth1\n
+      TYPE=Ethernet\n
+      ONBOOT=yes\n
+      NM_CONTROLLED=no\n
+      IPV6INIT=yes\n
+      DEVICE=eth1\n
+      " >> /etc/sysconfig/network-scripts/ifcfg-eth1
