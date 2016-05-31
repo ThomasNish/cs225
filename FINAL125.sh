@@ -14,13 +14,13 @@ fi
 (echo n; echo p; echo 2; echo ; echo +100MB; echo ; echo w) | fdisk /dev/xvdb
 
 # Objective 3
-echo "Enter your name: "
-read NAME
-if grep -qv $NAME /etc/passwd ;then 
-	:
-else
-	$(useradd $NAME)
-fi
+#echo "Enter your name: "
+r#ead NAME
+#if grep -qv $NAME /etc/passwd ;then 
+#	:
+#else
+#	$(useradd $NAME)
+#fi
 
 # Objective 4
 if grep -qv Student /etc/passwd ;then
@@ -72,7 +72,7 @@ $(umount /media/var)
 $(mount /dev/xvdb2 /var/reports)
 
 # Objective 7
-$(chown Student. /home/Student)
+#$(chown Student. /home/Student)
 
 
 # Objective 8
@@ -80,11 +80,20 @@ $(chown Student. /home/Student)
 # Objective 9
 (echo n; echo p; echo 1; echo 2048; echo +100MB; echo ; echo w) | fdisk /dev/xvdc
 (echo n; echo p; echo 1; echo 2048; echo +100MB; echo ; echo w) | fdisk /dev/xvde
+$(mkfs.ext4 /dev/xvdc1)
+$(mkfs.ext4 /dev/xvde1)
 $(pvcreate /dev/xvdc)
 $(pvcreate /dev/xvde)
 $(vgcreate vgfinal /dev/xvdc1)
 $(vgextend vgfinal /dev/xvde1)
 $(lvcreate --name lvfinal -l+100%FREE vgfinal)
+
+$(mkdir /media/var)
+$(mount /dev/lvfinal /media/var)
+$(cp -Rp /var/* /media/var)
+$(umount /dev/lvfinal)
+$(mount /dev/lvfinal /var)
+
 
 # Objective 10
 touch /etc/sysconfig/network-scripts/ifcfg-eth1
@@ -93,5 +102,4 @@ echo "NAME=Eth1\n
       ONBOOT=yes\n
       NM_CONTROLLED=no\n
       IPV6INIT=yes\n
-      DEVICE=eth1\n
-      " >> /etc/sysconfig/network-scripts/ifcfg-eth1
+      DEVICE=eth1\n" >> /etc/sysconfig/network-scripts/ifcfg-eth1
