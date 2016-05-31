@@ -2,12 +2,12 @@
 
 . /root/Projects/CS225/functionlibrary.sh
 
-trapforcrtc
+trap trapforcrtc SIGINT
 
 OLDIFS=$IFS
 IFS=$'\n'
 
-declare -a FNAME
+declare -a FNAME=FirstName
 declare -a LNAME
 declare -a COMP
 declare -a ADDRESS
@@ -45,8 +45,10 @@ for line in ${ADDR//\"/}; do
   FAX[$i]="${Tfax%%,*}"       
   Temail="${Tfax#*?,}"
   EMAIL[$i]="${Temail%%,*}"  
-  Tweb="${Temail#*?,}"
+  Tweb="${Temail#*?,}" 
   WEB[$i]="${Tweb%%,*}"       
-  ((  i++  ))
+  echo \""${FNAME[$i]}"\",\""${LNAME[$i]}"\",\""${COMP[$i]}"\",\""${ADDRESS[$i]}"\",\""${CITY[$i]}"\",\""${COUNTY[$i]}"\",\""${STATE[$i]}"\",\""${ZIP[$i]}"\",\""${PHONE[$i]}"\",\""${FAX[$i]}"\",\""${EMAIL[$i]}"\",\""${WEB[$i]}"\"
+  ((  i++  )) 
 done
+
 IFS=$OLDIFS
