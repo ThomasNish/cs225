@@ -3,33 +3,39 @@
 
 trap trapforcrtc SIGINT
 
-echo "Enter your information: "
-read INFO
-
-if (( -z INFO )) ;then
-	echo "You entered nothing. Please enter something this time: "
-	read INFO
-check_ip()
-{
-	
-}
-
-check_ssn()
-{
-	
-}
-
-check_pn()
-{
-	if [[ !  $INFO =~ ([0-1]|[(])[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9] ]] ;then
-		exit 1
-	else
-		echo "That is a valid phone number"
-		exit 0
+if [[  -z $1 ]] ;then
+	echo "You entered nothing."
+	echo "Try enter a: "
+	echo "Ip Address, "
+	echo "Social Security Number, "
+	echo "Phone Number, "
+	echo "or "
+	echo "Credit Card Number"
+else 
+	INFO=$1
+	if check_ip $INFO ;then
+		echo "$INFO is a valid IP Address"
+	else 
+		echo "$INFO is not a valid IP Address"
 	fi
-}
-
-check_ccn()
-{
 	
-}
+	if check_ssn $INFO ;then
+		echo "$INFO is a valid social security number"
+	else
+		echo "$INFO is not a valid social security number"
+	fi
+	
+	if check_pn $INFO ;then
+		echo "$INFO is a valid Phone Number"
+	else 
+		echo "$INFO is not a valid phone number"
+	fi
+	
+	if check_ccn ;then
+		echo "$INFO is a valid Credit Card Number"
+	else 
+		echo "$INFO is not a valid Credit Card Number"
+	fi
+fi
+
+
