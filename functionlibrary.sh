@@ -13,7 +13,8 @@ getTime()
 
 trapforcrtc()
 {
-	trap "echo you can\'t do that here" SIGINT
+	echo "an't do that here. Exiting no" 
+	exit
 }
 cleanup()
 {
@@ -39,4 +40,45 @@ move()
 }
 
 
+check_ip()
+{
+        CHECKADDRESS=$1
+        if [[ $CHECKADDRESS =~ ^([2][5][0-5][.]|[2][0-4][0-9][.]|[1][0-9]{2}[.]|[1-9]?[0-9][.]){3}([2][5][0-5]|[2][0-4][0-9]|[1][0-9]{2}|[1-9]?[0-9])$ ]] ;then
+                return 0
+        else
+                return 1
+        fi
+}
+
+
+check_ssn()
+{
+        CHECKSSN=$1
+
+        if [[ $CHECKSSN =~ ^[1-9][0-9]{2}[-\ ]?[0-9]{2}[-\ ]?[0-9]{4}$ ]] ;then
+                return 0
+        else
+                return 1
+        fi
+}
+
+check_pn()
+{
+        CHECKPN=$1
+        if [[ $CHECKPN =~ ^[1]?[\ -(]?[1-9]{3}?[\ -)]?[1-9][0-9]{2}[\ -]?[0-9]{4}$ ]] ;then
+                return 0
+        else
+                return 1
+        fi
+}
+
+check_ccn()
+{
+        CHECKCCN=$1
+if [[ $CHECKCCN =~ ^[0-9]{4}[\ -]?[0-9]{4}[\ -]?[0-9]{4}[\ -]?[0-9]{4}$ ]] ;then
+        return 0
+else
+        return 1
+fi
+}
 
