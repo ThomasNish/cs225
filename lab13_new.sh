@@ -6,16 +6,16 @@ trap trapforcrtc SIGINT
 while getopts :i:s:hp:c: opt ;do
         case $opt in
                 i) NUM=$OPTARG
-		if check_ip $NUM ;then
-                	echo "$NUM is a valid IP Address"
+		if check_ip "$NUM" ;then
+                	echo ""$NUM" is a valid IP Address"
        		else
-               		echo "$NUM is not a valid IP Address"
+               		echo ""$NUM" is not a valid IP Address"
  	      	fi;;
                 s) NUM=$OPTARG
-                if check_ssn $NUM ;then
-               		echo "$NUM is a valid social security number"
+                if check_ssn "$NUM" ;then
+               		echo ""$NUM" is a valid social security number"
        		else
-               		echo "$NUM is not a valid social security number"
+               		echo ""$NUM" is not a valid social security number"
        		fi ;;
       		
 		h) echo "Valid help options"
@@ -26,17 +26,17 @@ while getopts :i:s:hp:c: opt ;do
        		echo "-c Credit Card Number"
 		;;
                 p) NUM=$OPTARG
-		if check_pn $NUM ;then
-               		echo "$NUM is a valid Phone Number"
+		if check_pn "$NUM" ;then
+               		echo ""$NUM" is a valid Phone Number"
 		else
-               		echo "$NUM is not a valid phone number"
+               		echo ""$NUM" is not a valid phone number"
        		fi;;
                 
 		c) NUM=$OPTARG
-		if check_ccn ;then
-               		echo "$NUM is a valid Credit Card Number"
+		if check_ccn "$NUM" ;then
+               		echo ""$NUM" is a valid Credit Card Number"
        		else
-               		echo "$NUM is not a valid Credit Card Number"
+               		echo ""$NUM" is not a valid Credit Card Number"
        		fi;;
 		\?) echo "That is not a valid option!" ;;
         esac
