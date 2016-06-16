@@ -37,5 +37,13 @@ grep -v "/dev/xvdb1 /home /ext4 defaults 0 0" /root/Projects/CS225/bkfstab > /ro
 grep -v "/dev/xvdb2 /var/reports /ext4 defaults 0 0" /root/Projects/CS225/bkup > /root/Projects/CS225/bkfstab
 cp /root/Projects/CS225/bkfstab /etc/fstab
 
+$(lvremove /dev/vgfinal/lvfinal)
+$(vgremove /dev/vgfinal)
+$(pvremove /dev/xvdc1)
+$(pvremove /dev/xvde1)
+(echo d; echo 1; echo w; echo y) | gdisk /dev/xvdc
+(echo d; echo 2; echo w; echo y) | gdisk /dev/xvde
+
+
 (echo y) | rm  /etc/sysconfig/network-scripts/ifcfg-eth1
 exit 0

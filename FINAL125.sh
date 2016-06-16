@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cp -f /etc/fstab /root/Projects/CS225/backup.txt
+
 # Objective 1
 if [[ -f /root/Projects/CS225/messages.log ]] ;then
 	:
@@ -94,6 +96,7 @@ $(cp -Rp /var/* /media/var)
 $(umount /dev/lvfinal)
 $(mount /dev/lvfinal /var)
 
+echo "/dev/vgfinal/lvfinal /var/ /ext4 defaults 0 0" >> /etc/fstab
 
 # Objective 10
 touch /etc/sysconfig/network-scripts/ifcfg-eth1
@@ -102,4 +105,6 @@ echo "NAME=Eth1\n
       ONBOOT=yes\n
       NM_CONTROLLED=no\n
       IPV6INIT=yes\n
-      DEVICE=eth1\n" >> /etc/sysconfig/network-scripts/ifcfg-eth1
+      NETMASK=255.255.255.255
+      DEVICE=eth1\n
+      BOOTPROTO=static\n" >> /etc/sysconfig/network-scripts/ifcfg-eth1
