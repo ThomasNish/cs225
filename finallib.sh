@@ -1,8 +1,8 @@
 #!/bin/bash
-
+source /root/Projects/CS225/functionlibrary.sh
 trapall()
 {
-	
+	trap 
 }
 startup()
 {
@@ -19,11 +19,11 @@ startup()
 
 createdir()
 {
-  for YEAR in ${YEAR[@]}; do
+  for YEAR in ${YEAR[@]} ;do
       mkdir -p "$YEAR" 
-    for MONTH in ${MONTH[@]}; do
+    for MONTH in ${MONTH[@]} ;do
         mkdir -p "${YEAR}/${MONTH}"
-      for DAY in ${DAY[@]}; do
+      for DAY in ${DAY[@]} ;do
           mkdir -p "${YEAR}/${MONTH}/${DAY}"
       done
     done
